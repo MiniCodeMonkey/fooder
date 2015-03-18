@@ -19,7 +19,7 @@ class ConnectController extends Controller {
 	        'redirectUri'  => url('connect/return')
 	    ];
 	    $this->oauth = new OAuth($options);
-	    $this->oauth->setScopes(['profile', 'history']);
+	    $this->oauth->setScopes(['profile', 'request']);
 	}
 
 	public function getIndex() {

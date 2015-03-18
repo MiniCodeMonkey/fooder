@@ -1,17 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-class HomeController extends Controller {
+use App\Uber\Client;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
+class HomeController extends Controller {
 
 	/**
 	 * Create a new controller instance.
@@ -30,7 +21,22 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		try {
+		    $client = new Client;
+
+		    $profile = $client->userProfile();
+
+		    $products = $client->products(38.898813, -77.039459); // Somewhere in DC - hardcoded for now
+		    $productsList = [];
+		    foreach ($products['products'] as $product) {
+		    	$productsList[$product['product_id']] = $product['display_name'] . ': ' . $product['description'];
+		    }
+		    
+		    return view('home', ['name' => $profile['first_name'], 'products' => $productsList]);
+
+		} catch(Exception $e) {
+		    print $e->getMessage();
+		}
 	}
 
 }

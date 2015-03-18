@@ -13,3 +13,4 @@
 
 Route::get('/', 'HomeController@index');
 Route::controller('connect', 'ConnectController');
+Route::controller('ride', 'RideController');

@@ -10,8 +10,11 @@
 				</div>
 			@endif
 
+			<h1>Let's get started!</h1>
+			<h2>First, please connect with your Uber account</h2>
+
 			@if (isset($url))
-				<a href="{!! $url !!}" class="btn btn-primary btn-lg">Connect with Über</a>
+				<a href="{!! $url !!}" class="btn btn-primary btn-lg">Connect with Uber</a>
 			@endif
 		</div>
 	</div>
