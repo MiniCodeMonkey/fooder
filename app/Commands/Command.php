@@ -1,4 +1,4 @@
-<?php namespace App\Commands;
+<?php namespace Fooder\Commands;
 
 abstract class Command {
 

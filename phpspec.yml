@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Fooder
+        psr4_prefix: Fooder
         src_path: app

@@ -1,8 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php namespace Fooder\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Uber\Client;
+use Fooder\Uber\Client;
 
 class RideController extends Controller {
 

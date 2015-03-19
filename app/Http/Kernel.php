@@ -1,4 +1,4 @@
-<?php namespace App\Http;
+<?php namespace Fooder\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -15,7 +15,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'App\Http\Middleware\VerifyCsrfToken',
+		'Fooder\Http\Middleware\VerifyCsrfToken',
 	];
 
 	/**
@@ -24,10 +24,10 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'App\Http\Middleware\Authenticate',
+		'auth' => 'Fooder\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-		'connected' => 'App\Http\Middleware\ConnectedWithUber',
+		'guest' => 'Fooder\Http\Middleware\RedirectIfAuthenticated',
+		'connected' => 'Fooder\Http\Middleware\ConnectedWithUber',
 	];
 
 }

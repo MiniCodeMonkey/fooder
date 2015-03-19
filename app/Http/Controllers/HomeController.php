@@ -1,6 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php namespace Fooder\Http\Controllers;
 
-use App\Uber\Client;
+use Fooder\Uber\Client;
 
 class HomeController extends Controller {
 

@@ -1,4 +1,4 @@
-<?php namespace App\Uber;
+<?php namespace Fooder\Uber;
 
 use Uber\API\Client as OriginalClient;
 use Pest;
