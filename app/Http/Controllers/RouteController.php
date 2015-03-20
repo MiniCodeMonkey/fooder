@@ -5,6 +5,10 @@ use Fooder\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use Fooder\Services\Directions\Directions;
+use Fooder\Services\Place\Place;
+use Fooder\Services\Location;
+
 class RouteController extends Controller {
 	/**
 	 * Input:
@@ -21,7 +25,36 @@ class RouteController extends Controller {
  	 * Give the user of drive-thru choices
 	 */
 	public function getIndex() {
-		
+		$directions = Directions::getDirections('508 H St NE, Washington DC', '700 King St., Alexandria VA');
+
+		$candidates = array_merge(
+			Place::find('fast food', $directions->getStartLocation()),
+			Place::find('fast food', $directions->getEndLocation())
+		);
+
+		$stepData = [];
+		foreach ($directions->getSteps() as $step) {
+			$stepData[] = $step->getLine()->getPoints();
+			foreach ($step->getLine()->getPoints() as $point) {
+				foreach ($candidates as &$candidate) {
+					$distance = $point->distanceTo($candidate->getLocation());
+					if ($candidate->getScore() === null || $distance < $candidate->getScore()) {
+						$candidate->setScore($distance);
+					}
+				}
+			}
+		}
+
+		usort($candidates, function ($a, $b) {
+			return ($a->getScore() < $b->getScore()) ? -1 : 1;
+		});
+
+		$response = [
+			'candidates' => array_slice($candidates, 0, 20),
+			'route' => $stepData
+		];
+
+		return response()->json($response);
 	}
 
 	/**
