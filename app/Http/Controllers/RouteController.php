@@ -24,8 +24,8 @@ class RouteController extends Controller {
  	 * Rank drive-thru's on how close they are to the route
  	 * Give the user of drive-thru choices
 	 */
-	public function getIndex() {
-		$directions = Directions::getDirections(Input::get('origin'), Input::get('destination'));
+	public function getIndex(Request $request) {
+		$directions = Directions::getDirections($request->get('origin'), $request->get('destination'));
 
 		$candidates = array_merge(
 			Place::find('fast food', $directions->getStartLocation()),
