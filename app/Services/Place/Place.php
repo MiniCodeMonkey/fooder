@@ -48,6 +48,14 @@ class Place implements \JsonSerializable {
 		return $this->score;
 	}
 
+	public function getDistance() {
+		$distance = $this->getScore();
+		$averageSpeedPerMinute = 10 / 60; // Let's say that the average speed is 10 mph
+		$time = ceil($distance / $averageSpeedPerMinute);
+
+		return $time . ' min. detour';
+	}
+
 	public function details($placeid) {
 		if ($this->details === null) {
 			$detailsUrl = self::$detailsUrl;
@@ -71,6 +79,7 @@ class Place implements \JsonSerializable {
 	public function jsonSerialize() {
 		return [
 			'score' => $this->getScore(),
+			'distance' => $this->getDistance(),
 			'place' => $this->details($this->data->place_id)
 		];
 	}
