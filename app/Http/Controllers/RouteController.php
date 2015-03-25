@@ -25,7 +25,7 @@ class RouteController extends Controller {
  	 * Give the user of drive-thru choices
 	 */
 	public function getIndex() {
-		$directions = Directions::getDirections('508 H St NE, Washington DC', '700 King St., Alexandria VA');
+		$directions = Directions::getDirections(Input::get('origin'), Input::get('destination'));
 
 		$candidates = array_merge(
 			Place::find('fast food', $directions->getStartLocation()),
