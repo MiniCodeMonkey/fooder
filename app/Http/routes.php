@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::controller('connect', 'ConnectController');
 Route::controller('ride', 'RideController');
 Route::controller('route', 'RouteController');
+Route::get('about', function () {
+	return view('about');
+});

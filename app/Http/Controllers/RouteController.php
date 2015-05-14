@@ -5,6 +5,8 @@ use Fooder\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use Fooder\Uber\Client;
+
 use Fooder\Services\Directions\Directions;
 use Fooder\Services\Place\Place;
 use Fooder\Services\Location;
@@ -55,21 +57,6 @@ class RouteController extends Controller {
 		];
 
 		return response()->json($response);
-	}
-
-	/**
-	 * Input:
-	 * Route id, drive-thru id, Uber user token
-	 *
-	 * Output:
-	 * success/failure
-	 *
-	 * Description:
-	 * Request ride with Uber
-	 * Text Uber driver with drive-thru instructions
-	 */
-	public function postIndex() {
-
 	}
 
 }
